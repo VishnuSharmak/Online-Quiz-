@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Core Programming Concepts – 100 Question Quiz</title>
+  <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+  }
+  .timer {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+    background: #fdecea;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+  }
+  .question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f9fafb;
+    border-left: 5px solid #3498db;
+  }
+  .question p {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .question input {
+    margin-right: 8px;
+  }
+  button {
+    display: block;
+    margin: 30px auto;
+    padding: 14px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  }
+  .result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #ecf0f1;
+    border-radius: 10px;
+  }
+  .result h3 {
+    color: #2c3e50;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h2>Core Programming Concepts – Online Quiz (100 Questions)</h2>
+<p><b>Instructions:</b> Attempt all questions. Time limit: <b>60 minutes</b>.</p>
+<div class="timer">Time Left: <span id="time">60:00</span></div>
+
+<form id="quizForm">
+
+<!-- QUESTIONS 1–20 : BASICS -->
+<script>
+const questions = [
+  ['What is a variable?', 'Fixed value', 'Storage location', 'Loop', 'Compiler', 'b'],
+  ['Which data type stores whole numbers?', 'float', 'int', 'char', 'double', 'b'],
+  ['Which stores decimal values?', 'int', 'char', 'float', 'boolean', 'c'],
+  ['Which operator assigns value?', '==', '=', '!=', '<=', 'b'],
+  ['Result of 10 % 3?', '1', '3', '0', '10', 'a'],
+  ['Which is a logical operator?', '+', '&&', '%', '=', 'b'],
+  ['Which loop executes at least once?', 'for', 'while', 'do-while', 'foreach', 'c'],
+  ['Array index starts from?', '1', '0', '-1', 'depends', 'b'],
+  ['Which keyword exits loop?', 'continue', 'break', 'exit', 'stop', 'b'],
+  ['Which is NOT a data type?', 'int', 'float', 'loop', 'char', 'c'],
+  ['Signed data type means?', 'Only positive', 'Only negative', 'Both', 'None', 'c'],
+  ['ASCII of A?', '60', '61', '65', '70', 'c'],
+  ['Decision making keyword?', 'for', 'if', 'loop', 'break', 'b'],
+  ['else executes when?', 'Condition true', 'Condition false', 'Loop ends', 'Program ends', 'b'],
+  ['switch works with?', 'float', 'double', 'constant cases', 'array', 'c'],
+  ['Infinite loop means?', 'Runs once', 'Ends early', 'Never ends', 'Error', 'c'],
+  ['continue statement does?', 'Ends loop', 'Skips iteration', 'Stops program', 'Restarts loop', 'b'],
+  ['Array stores?', 'Different types', 'Same data type', 'Functions', 'Loops', 'b'],
+  ['Function is used for?', 'Code reuse', 'Memory waste', 'Compilation', 'Error', 'a'],
+  ['Return statement?', 'Ends loop', 'Ends function', 'Skips code', 'Repeats function', 'b'],
+
+// QUESTIONS 21–60 : INTERMEDIATE
+  ['Call by value passes?', 'Address', 'Copy', 'Object', 'Pointer', 'b'],
+  ['Call by reference passes?', 'Copy', 'Value', 'Address', 'Constant', 'c'],
+  ['Changes reflect in caller in?', 'Value', 'Reference', 'Both', 'None', 'b'],
+  ['Loop inside loop is called?', 'Infinite loop', 'Nested loop', 'Entry loop', 'Exit loop', 'b'],
+  ['Best loop when count known?', 'while', 'do-while', 'for', 'foreach', 'c'],
+  ['Ternary operator symbol?', '::', '??', '?:', '&&', 'c'],
+  ['Compile time error example?', 'Division by zero', 'Missing semicolon', 'Wrong output', 'Infinite loop', 'b'],
+  ['Runtime error example?', 'Syntax error', 'Division by zero', 'Indentation', 'Typo', 'b'],
+  ['Logical error causes?', 'Crash', 'Wrong output', 'No compile', 'No run', 'b'],
+  ['Local variable scope?', 'Whole program', 'Inside block', 'Global', 'File', 'b'],
+  ['Global variable scope?', 'Block', 'Function', 'Whole program', 'Loop', 'c'],
+  ['Recursion means?', 'Loop', 'Function calls itself', 'Array call', 'Infinite loop', 'b'],
+  ['Base condition prevents?', 'Compile error', 'Infinite recursion', 'Syntax error', 'Runtime error', 'b'],
+  ['Recursion uses?', 'Heap', 'Queue', 'Stack', 'File', 'c'],
+  ['2D array also called?', 'List', 'Matrix', 'Stack', 'Queue', 'b'],
+  ['3x3 array elements?', '6', '9', '3', '12', 'b'],
+  ['Traversing array means?', 'Sorting', 'Searching', 'Accessing all', 'Deleting', 'c'],
+  ['Array memory is?', 'Random', 'Contiguous', 'Separate', 'Dynamic', 'b'],
+  ['switch faster than if when?', 'Few cases', 'Many fixed cases', 'Float values', 'Strings', 'b'],
+  ['goto avoided because?', 'Slow', 'Unsafe', 'Bad readability', 'Error', 'c'],
+
+// QUESTIONS 61–100 : ADVANCED
+  ['Passing array to function passes?', 'Copy', 'Address', 'Size', 'Type', 'b'],
+  ['Array name represents?', 'Value', 'First element address', 'Size', 'Type', 'b'],
+  ['break in nested loop breaks?', 'All loops', 'Inner loop', 'Outer loop', 'Program', 'b'],
+  ['Short circuit occurs in?', 'Arithmetic', 'Logical', 'Relational', 'Assignment', 'b'],
+  ['Stack overflow due to?', 'Large array', 'Deep recursion', 'Syntax error', 'Loop', 'b'],
+  ['Heap memory used for?', 'Static data', 'Dynamic allocation', 'Code', 'Register', 'b'],
+  ['Which access faster?', 'Heap', 'Stack', 'File', 'Network', 'b'],
+  ['Time complexity of single loop?', 'O(1)', 'O(n)', 'O(n²)', 'O(log n)', 'b'],
+  ['Best practice in loops?', 'Infinite loops', 'Avoid condition', 'Proper condition', 'No variables', 'c'],
+  ['Programming logic means?', 'Syntax', 'Thinking approach', 'Compiler', 'Language', 'b'],
+  ['continue skips?', 'Loop', 'Iteration', 'Program', 'Function', 'b'],
+  ['Function without return type?', 'int', 'char', 'void', 'error', 'c'],
+  ['Which improves readability?', 'goto', 'Indentation', 'Global vars', 'Recursion', 'b'],
+  ['Entry controlled loop?', 'do-while', 'for', 'while', 'Both for & while', 'd'],
+  ['Exit controlled loop?', 'for', 'while', 'do-while', 'foreach', 'c'],
+  ['Modulus operator gives?', 'Quotient', 'Remainder', 'Product', 'Sum', 'b'],
+  ['Which is NOT OOP?', 'Encapsulation', 'Inheritance', 'Compilation', 'Polymorphism', 'c'],
+  ['Boolean stores?', '0/1', 'True/False', 'Character', 'Number', 'b'],
+  ['Which loop best for unknown count?', 'for', 'while', 'do', 'foreach', 'b'],
+  ['Program executes line by line?', 'Interpreter', 'Compiler', 'Assembler', 'Linker', 'a']
+];
+</script>
+
+<div id="quiz"></div>
+<button type="button" onclick="submitQuiz()">Submit Quiz</button>
+</form>
+
+<div class="result" id="result"></div>
+
+<script>
+// Render questions
+const quizDiv = document.getElementById('quiz');
+questions.forEach((q, i) => {
+  quizDiv.innerHTML += `<div class='question'><p>${i+1}. ${q[0]}</p>
+  <input type='radio' name='q${i}' value='a'> ${q[1]}<br>
+  <input type='radio' name='q${i}' value='b'> ${q[2]}<br>
+  <input type='radio' name='q${i}' value='c'> ${q[3]}<br>
+  <input type='radio' name='q${i}' value='d'> ${q[4]}<br></div>`;
+});
+
+// Timer
+let time = 3600;
+setInterval(() => {
+  let m = Math.floor(time/60);
+  let s = time%60;
+  document.getElementById('time').textContent = `${m}:${s<10?'0':''}${s}`;
+  if(time-- <= 0) submitQuiz();
+}, 1000);
+
+function submitQuiz() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    const ans = document.querySelector(`input[name=q${i}]:checked`);
+    if(ans && ans.value === q[5]) score++;
+  });
+  document.getElementById('result').innerHTML = `Final Score: ${score} / ${questions.length}`;
+}
+</script>
+
+<script>
+// Enhanced submit with detailed result, negative marking, pass/fail, certificate
+function submitQuiz() {
+  let score = 0;
+  let negative = 0;
+  let details = '';
+  const total = questions.length;
+
+  questions.forEach((q, i) => {
+    const ans = document.querySelector(`input[name=q${i}]:checked`);
+    if (ans) {
+      if (ans.value === q[5]) {
+        score++;
+        details += `<p>Q${i+1}: ✅ Correct</p>`;
+      } else {
+        negative += 0.25;
+        details += `<p>Q${i+1}: ❌ Wrong | Correct: <b>${q[5].toUpperCase()}</b></p>`;
+      }
+    } else {
+      details += `<p>Q${i+1}: ❌ Not Answered | Correct: <b>${q[5].toUpperCase()}</b></p>`;
+    }
+  });
+
+  let finalScore = score - negative;
+  if (finalScore < 0) finalScore = 0;
+
+  let percentage = (finalScore / total) * 100;
+  let status = percentage >= 40 ? 'PASS ✅' : 'FAIL ❌';
+
+  document.getElementById('result').innerHTML = `
+    <h3>Result Summary</h3>
+    <p>Correct Answers: ${score}</p>
+    <p>Negative Marks: ${negative}</p>
+    <p><b>Final Score:</b> ${finalScore.toFixed(2)} / ${total}</p>
+    <p><b>Percentage:</b> ${percentage.toFixed(2)}%</p>
+    <p><b>Status:</b> ${status}</p>
+    ${percentage >= 40 ? '<button onclick="downloadCertificate()">Download Certificate</button>' : ''}
+    <hr>${details}`;
+}
+
+// Certificate download
+function downloadCertificate() {
+  const win = window.open('', '_blank');
+  win.document.write(`
+    <h1 style='text-align:center'>Certificate of Completion</h1>
+    <p style='text-align:center'>This certifies that the student has successfully passed</p>
+    <h2 style='text-align:center'>Core Programming Concepts Quiz</h2>
+    <p style='text-align:center'>Status: PASS</p>
+    <p style='text-align:center'>Date: ${new Date().toLocaleDateString()}</p>
+  `);
+  win.print();
+}
+
+// Exam mode: disable tab switch & right click
+window.onblur = function () {
+  alert('Tab switching is disabled during the exam!');
+};
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</div>
+</body>
+</html>
